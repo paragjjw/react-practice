@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export default function Navbar(props) {
   const [navStyle, setnavStyle] = useState({
     backgroundColor: "white",
@@ -80,11 +80,11 @@ export default function Navbar(props) {
                   Home
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" style={navStyle} href="/about">
                   About
                 </a>
-              </li>
+              </li> */}
             </ul>
             <div className="btn-group" style={navStyle}>
               <button

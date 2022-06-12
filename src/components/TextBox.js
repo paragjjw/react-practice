@@ -25,7 +25,7 @@ export default function TextBox(props) {
     <div style={props.Style}>
       <div className="mb-3 container">
         <label htmlFor="textBox" className="form-label">
-          <b>Enter text here</b>
+          <b style={{ fontSize: "1.3rem" }}>Enter text here</b>
         </label>
         <textarea
           className="form-control"
