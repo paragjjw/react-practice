@@ -13,8 +13,6 @@ import React from "react";
 //   Routes,
 // } from "react-router-dom";
 
-// import About from './components/About';
-
 function App() {
   const [mode, setmode] = useState("light");
   const [alert, setalert] = useState(null);
@@ -24,7 +22,7 @@ function App() {
   });
   function showStyle() {
     let theme = document.getElementById("theme").innerText;
-    console.log(theme);
+    // console.log(theme);
     if (theme == "Light") {
       setstyle({
         backgroundColor: "white",
@@ -43,19 +41,19 @@ function App() {
       document.body.style.color = "white";
     } else if (theme == "Red") {
       setstyle({
-        backgroundColor: "#c65a5a",
+        backgroundColor: "rgb(133, 86, 86)",
         color: "white",
       });
       setmode("dark");
-      document.body.style.backgroundColor = "#c65a5a";
+      document.body.style.backgroundColor = "rgb(133, 86, 86)";
       document.body.style.color = "white";
     } else if (theme == "Green") {
       setstyle({
-        backgroundColor: "#3d9d3d",
+        backgroundColor: "rgb(33, 115, 33)",
         color: "white",
       });
       setmode("dark");
-      document.body.style.backgroundColor = "#3d9d3d";
+      document.body.style.backgroundColor = "rgb(33, 115, 33)";
       document.body.style.color = "white";
     }
   }
@@ -80,22 +78,26 @@ function App() {
   //   }
   // }
   return (
+    // <Router>
     <>
       <Navbar title="textUtils" showStyle={showStyle}></Navbar>
       <Alert alert={alert}></Alert>
-      {/* <About></About> */}
-      {/* <Router>
-        <Routes>
-          <Route path="/about">
-            <About></About>
-          </Route>
-          <Route path="/">
-            <TextBox mode={mode} Style={style} showAlert={showAlert}></TextBox>
-          </Route>
-        </Routes>
-      </Router> */}
+      {/* <Routes>
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <TextBox
+                mode={mode}
+                Style={style}
+                showAlert={showAlert}
+              ></TextBox>
+            }
+          />
+        </Routes> */}
       <TextBox mode={mode} Style={style} showAlert={showAlert}></TextBox>
     </>
+    // </Router>
   );
 }
 
