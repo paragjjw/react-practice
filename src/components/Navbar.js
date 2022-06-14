@@ -12,7 +12,7 @@ export default function Navbar(props) {
       .getElementsByClassName("dropdown-menu")[0]
       .classList.remove("show");
     document.getElementById("theme").innerText = "Light";
-    setnavStyle({ backgroundColor: "white", color: "black !important" });
+    setnavStyle({ backgroundColor: "white", color: "black" });
     props.showStyle();
   }
   function darkTheme() {
@@ -21,7 +21,7 @@ export default function Navbar(props) {
       .getElementsByClassName("dropdown-menu")[0]
       .classList.remove("show");
     document.getElementById("theme").innerText = "Dark";
-    setnavStyle({ backgroundColor: "black", color: "white !important" });
+    setnavStyle({ backgroundColor: "black", color: "white" });
     props.showStyle();
   }
   function redTheme() {
@@ -32,7 +32,7 @@ export default function Navbar(props) {
     document.getElementById("theme").innerText = "Red";
     setnavStyle({
       backgroundColor: "rgb(83, 28, 28)",
-      color: "white !important",
+      color: "white",
     });
     props.showStyle();
   }
@@ -42,30 +42,10 @@ export default function Navbar(props) {
       .getElementsByClassName("dropdown-menu")[0]
       .classList.remove("show");
     document.getElementById("theme").innerText = "Green";
-    setnavStyle({ backgroundColor: "#044804", color: "white !important" });
+    setnavStyle({ backgroundColor: "#044804", color: "white" });
     console.log(navStyle);
     props.showStyle();
   }
-  // let dropdownItems = document.getElementsByClassName("dropdown-item");
-  // Array.from(dropdownItems).forEach((element) => {
-  //   element.addEventListener("click", (e) => {
-
-  //     // e.preventDefault();
-  //     document.getElementById("theme").innerText = e.target.innerText;
-  //     props.showStyle();
-  //     // console.log(props.style);
-  //     console.log(e.target.innerText);
-  //     if (e.target.innerText == "Light") {
-  //       setnavStyle({ backgroundColor: "white", color: "black !important" });
-  //     } else if (e.target.innerText == "Dark") {
-  //       setnavStyle({ backgroundColor: "black", color: "white !important" });
-  //     } else if (e.target.innerText == "Red") {
-  //       setnavStyle({ backgroundColor: "#8a0e0e", color: "white !important" });
-  //     } else if (e.target.innerText == "Green") {
-  //       setnavStyle({ backgroundColor: "#044804", color: "white !important" });
-  //     }
-  //   });
-  // });
   return (
     <div style={navStyle}>
       {/* <nav
@@ -73,7 +53,7 @@ export default function Navbar(props) {
       > */}
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" style={navStyle} to="/">
             {props.title}
           </Link>
           <button
