@@ -11,12 +11,7 @@ export default function TextBox(props) {
   function LowerCase() {
     setText(text.toLowerCase());
   }
-  function noOfWords() {
-    if (text.length == 0) return 0;
-    if (text.lastIndexOf(" ") == text.length - 1)
-      return text.split(" ").length - 1;
-    return text.split(" ").length;
-  }
+
   function clearText() {
     setText("");
   }
@@ -77,9 +72,20 @@ export default function TextBox(props) {
       <div className="container">
         <h1>Your text summary</h1>
         <p>
-          {noOfWords()} words and {text.length} characters
+          {
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>{0.008 * noOfWords()} Minutes read</p>
+        <p>
+          {0.008 *
+            text.split(/\s+/).filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          Minutes read
+        </p>
         <h2>Preview</h2>
         <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
