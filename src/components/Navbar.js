@@ -1,27 +1,46 @@
 import React from "react";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Navbar(props) {
   const [navStyle, setnavStyle] = useState({
     backgroundColor: "white",
     color: "black",
   });
   function lightTheme() {
+    document.getElementById("theme").classList.remove("show");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.remove("show");
     document.getElementById("theme").innerText = "Light";
     setnavStyle({ backgroundColor: "white", color: "black !important" });
     props.showStyle();
   }
   function darkTheme() {
+    document.getElementById("theme").classList.remove("show");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.remove("show");
     document.getElementById("theme").innerText = "Dark";
     setnavStyle({ backgroundColor: "black", color: "white !important" });
     props.showStyle();
   }
   function redTheme() {
+    document.getElementById("theme").classList.remove("show");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.remove("show");
     document.getElementById("theme").innerText = "Red";
-    setnavStyle({ backgroundColor: "#8a0e0e", color: "white !important" });
+    setnavStyle({
+      backgroundColor: "rgb(83, 28, 28)",
+      color: "white !important",
+    });
     props.showStyle();
   }
   function greenTheme() {
+    document.getElementById("theme").classList.remove("show");
+    document
+      .getElementsByClassName("dropdown-menu")[0]
+      .classList.remove("show");
     document.getElementById("theme").innerText = "Green";
     setnavStyle({ backgroundColor: "#044804", color: "white !important" });
     console.log(navStyle);
@@ -54,9 +73,9 @@ export default function Navbar(props) {
       > */}
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             {props.title}
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -71,25 +90,33 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link active"
                   aria-current="page"
                   style={navStyle}
-                  href="/"
+                  to="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" style={navStyle} href="/about">
+              <li className="nav-item">
+                <Link className="nav-link" style={navStyle} to="/about">
                   About
-                </a>
-              </li> */}
+                </Link>
+              </li>
             </ul>
             <div className="btn-group" style={navStyle}>
               <button
                 type="button"
-                className="btn btn-secondary dropdown-toggle"
+                className={`btn btn-${
+                  props.mode == "light"
+                    ? "primary"
+                    : props.mode == "dark"
+                    ? "secondary"
+                    : props.mode == "green"
+                    ? "success"
+                    : "danger"
+                } dropdown-toggle`}
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
                 aria-expanded="false"
@@ -100,18 +127,61 @@ export default function Navbar(props) {
               <ul
                 className="dropdown-menu dropdown-menu-lg-end"
                 aria-labelledby="dropdownMenuButton1"
+                style={{
+                  backgroundColor:
+                    props.mode == "light"
+                      ? "white"
+                      : props.mode == "dark"
+                      ? "#8c8a8a"
+                      : props.mode == "green"
+                      ? "rgb(163, 208, 66)"
+                      : "#d2b7b7",
+                }}
               >
-                <li className="dropdown-item disabled">Choose a theme</li>
-                <li className="dropdown-item" onClick={lightTheme}>
+                <li
+                  className="dropdown-item disabled"
+                  style={{
+                    backgroundColor:
+                      props.mode == "light"
+                        ? "white"
+                        : props.mode == "dark"
+                        ? "#ffffffbf"
+                        : props.mode == "green"
+                        ? "#70972a"
+                        : "#946d6d",
+                    color: "black",
+                    marginTop: "-8px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Choose a theme
+                </li>
+                <li
+                  className="dropdown-item"
+                  style={{ color: props.mode == "dark" ? "white" : "black" }}
+                  onClick={lightTheme}
+                >
                   Light
                 </li>
-                <li className="dropdown-item" onClick={darkTheme}>
+                <li
+                  className="dropdown-item"
+                  style={{ color: props.mode == "dark" ? "white" : "black" }}
+                  onClick={darkTheme}
+                >
                   Dark
                 </li>
-                <li className="dropdown-item" onClick={greenTheme}>
+                <li
+                  className="dropdown-item"
+                  style={{ color: props.mode == "dark" ? "white" : "black" }}
+                  onClick={greenTheme}
+                >
                   Green
                 </li>
-                <li className="dropdown-item" onClick={redTheme}>
+                <li
+                  className="dropdown-item"
+                  style={{ color: props.mode == "dark" ? "white" : "black" }}
+                  onClick={redTheme}
+                >
                   Red
                 </li>
               </ul>

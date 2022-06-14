@@ -32,33 +32,44 @@ export default function TextBox(props) {
           value={text}
           onChange={typeText}
           style={{
-            backgroundColor: props.mode == "dark" ? "grey" : "white",
-            color: props.mode == "dark" ? "white" : "black",
+            border: "1px solid black",
+            backgroundColor:
+              props.mode == "light"
+                ? "white"
+                : props.mode == "dark"
+                ? "#808080b5"
+                : props.mode == "green"
+                ? "rgba(168, 210, 77, 0.62)"
+                : "#d0b1b1",
+            color: props.mode == "light" ? "black" : "white",
           }}
           id="textBox"
           rows="8"
         ></textarea>
         <button
           className={`btn btn-${
-            props.mode == "dark" ? "outline-light" : "primary"
+            props.mode == "light" ? "primary" : "outline-light"
           } mx-2 my-2`}
           onClick={UpperCase}
+          disabled={text.length == 0}
         >
           Convert to Uppercase
         </button>
         <button
           className={`btn btn-${
-            props.mode == "dark" ? "outline-light" : "primary"
+            props.mode == "light" ? "primary" : "outline-light"
           } mx-2 my-2`}
           onClick={LowerCase}
+          disabled={text.length == 0}
         >
           Convert to Lowercase
         </button>
         <button
           className={`btn btn-${
-            props.mode == "dark" ? "outline-light" : "primary"
+            props.mode == "light" ? "primary" : "outline-light"
           } mx-2 my-2`}
           onClick={clearText}
+          disabled={text.length == 0}
         >
           Clear text
         </button>
@@ -70,11 +81,7 @@ export default function TextBox(props) {
         </p>
         <p>{0.008 * noOfWords()} Minutes read</p>
         <h2>Preview</h2>
-        <p>
-          {text.length > 0
-            ? text
-            : "Enter some text in the above textbox to preview it here"}
-        </p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </div>
   );
