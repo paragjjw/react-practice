@@ -5,13 +5,13 @@ import TextBox from "./components/TextBox";
 import { useState } from "react";
 import Alert from "./components/Alert";
 import React from "react";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Routes,
-// } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes,
+} from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState("light");
@@ -24,6 +24,7 @@ function App() {
     let theme = document.getElementById("theme").innerText;
     // console.log(theme);
     if (theme == "Light") {
+      showAlert("Light theme enabled", "success");
       setstyle({
         backgroundColor: "white",
         color: "black",
@@ -32,6 +33,7 @@ function App() {
       document.body.style.backgroundColor = "white";
       document.body.style.color = "black";
     } else if (theme == "Dark") {
+      showAlert("Dark theme enabled", "success");
       setstyle({
         backgroundColor: "black",
         color: "white",
@@ -40,19 +42,21 @@ function App() {
       document.body.style.backgroundColor = "black";
       document.body.style.color = "white";
     } else if (theme == "Red") {
+      showAlert("Red theme enabled", "success");
       setstyle({
-        backgroundColor: "rgb(133, 86, 86)",
+        backgroundColor: "rgb(134, 50, 50)",
         color: "white",
       });
-      setmode("dark");
-      document.body.style.backgroundColor = "rgb(133, 86, 86)";
+      setmode("red");
+      document.body.style.backgroundColor = "rgb(134, 50, 50)";
       document.body.style.color = "white";
     } else if (theme == "Green") {
+      showAlert("Green theme enabled", "success");
       setstyle({
         backgroundColor: "rgb(33, 115, 33)",
         color: "white",
       });
-      setmode("dark");
+      setmode("green");
       document.body.style.backgroundColor = "rgb(33, 115, 33)";
       document.body.style.color = "white";
     }
@@ -64,7 +68,7 @@ function App() {
     });
     setTimeout(() => {
       setalert(null);
-    }, 3000);
+    }, 2000);
   }
   // function toggleMode() {
   //   if (mode == "light") {
@@ -78,12 +82,12 @@ function App() {
   //   }
   // }
   return (
-    // <Router>
-    <>
-      <Navbar title="textUtils" showStyle={showStyle}></Navbar>
-      <Alert alert={alert}></Alert>
-      {/* <Routes>
-          <Route path="/about" element={<About />} />
+    <Router>
+      <>
+        <Navbar title="textUtils" showStyle={showStyle} mode={mode}></Navbar>
+        <Alert alert={alert}></Alert>
+        <Routes>
+          <Route path="/about" element={<About mode={mode} />} />
           <Route
             path="/"
             element={
@@ -94,10 +98,10 @@ function App() {
               ></TextBox>
             }
           />
-        </Routes> */}
-      <TextBox mode={mode} Style={style} showAlert={showAlert}></TextBox>
-    </>
-    // </Router>
+        </Routes>
+        {/* <TextBox mode={mode} Style={style} showAlert={showAlert}></TextBox> */}
+      </>
+    </Router>
   );
 }
 
